@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.desafios.aula2;
+package br.com.alura.screenmatch.desafios.aula3;
 
 import java.util.Arrays;
 import java.util.Comparator;
