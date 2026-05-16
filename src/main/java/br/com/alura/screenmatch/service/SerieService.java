@@ -61,7 +61,7 @@ public class SerieService {
         if (serie.isPresent()){
             Serie s = serie.get();
             return s.getEpisodios().stream()
-                    .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                    .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao()))
                     .collect(Collectors.toList());
         }
         return null;
@@ -70,7 +70,7 @@ public class SerieService {
     public List<EpisodioDTO> obterTemporadaPorNumero(Long id, Long numero) {
         return serieRepository.obterEpisodiosPorTemporada(id,numero)
                 .stream()
-                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao()))
                 .collect(Collectors.toList());
     }
 
@@ -79,5 +79,11 @@ public class SerieService {
         return converteDados(serieRepository.findByGenero(categoria));
     }
 
+    public List<EpisodioDTO> obterTopEpisodios(Long id) {
+        return serieRepository.obterTopEpisodios(id)
+                .stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao()))
+                .collect(Collectors.toList());
+    }
 }
 
